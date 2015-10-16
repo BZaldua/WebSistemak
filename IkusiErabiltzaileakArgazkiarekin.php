@@ -1,6 +1,6 @@
 <?php 
-mysql_connect("mysql.hostinger.es","u526113874_rb15","123456789") or die(mysql_error());
-mysql_select_db("u526113874_quiz") or die(mysql_error());
+mysql_connect("localhost","root","") or die(mysql_error());
+mysql_select_db("quiz") or die(mysql_error());
 
 $erabiltzaileak = mysql_query("select * from erabiltzaile");
 echo "<table border = 1><tr><th>Izena</th><th>Abizena</th><th>Emaila</th><th>Espezialitatea</th><th>Interesa Teknologian</th><th>Argazkia</th></tr>";

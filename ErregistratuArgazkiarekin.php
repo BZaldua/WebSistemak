@@ -1,6 +1,6 @@
 <?php
-$link = mysql_connect("mysql.hostinger.es","u526113874_rb15","123456789") or die(mysql_error());
-mysql_select_db("u526113874_quiz") or die(mysql_error());
+$link = mysql_connect("localhost","root","") or die(mysql_error());
+mysql_select_db("quiz") or die(mysql_error());
 
 $esp = $_POST['espezialitatea'];
 if ($esp == 'other'){
@@ -20,7 +20,7 @@ else
 	}
 	
 $korreoa = $_POST['emaila'];
-if (filter_var($korreoa, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"[a-z]+[0-9]{3}@ikasle.ehu.e(us|s)"))) === false) {
+if (filter_var($korreoa, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/[a-z]+[0-9]{3}@ikasle.ehu.e(us|s)/"))) === false) {
 		echo("Emaila ez da zuzena");
 	} else {
 		
