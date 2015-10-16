@@ -1,0 +1,70 @@
+html{
+	background-color:#FFFCF0;
+}
+.nav a{
+	color:#5a5a5a;
+	text-transform:uppercase;
+	padding: 14px 10px;
+}
+
+.ezkerra{
+	display:inline;
+	float:left!important;
+}
+
+.eskuina{
+	padding-right: 15px;
+    padding-left: 0;
+    border-right: 5px solid #eee;
+    border-left: 0;
+    text-align: right;
+	right: 0;
+    left: auto;
+	list-style-type: none;
+	}
+	
+.aim h1{
+	text-align:center;
+	font-size:26px;
+	text-transform:uppercase;
+}
+
+.aim p{
+	padding-left:120px;
+	padding-right:120px;
+	text-align:center;
+}
+
+.argazkia{
+	padding-right:100px;
+	padding-left: 50px;
+	padding-top: 50px;
+	float:left!important;
+}
+
+.aurkezpena{
+	padding-top:50px;
+	padding-bottom:40px;
+}
+
+.aurkezpena p{
+	padding-right:100px;
+}
+
+.footer{
+	padding-top:100px;
+	text-align:center;
+}
+
+#erregistro{
+	text-align:center;
+}
+.footer2{
+	padding-top:50px;
+	text-align:center;
+}
+
+textarea{
+width:300px;
+height:90px;
+}
