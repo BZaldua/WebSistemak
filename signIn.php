@@ -14,13 +14,12 @@ echo "<!DOCTYPE html>
 		
 
 	$link =  new mysqli("localhost","root","","quiz");
-	if($link->mysqli_connect_errno) 
+	if($link->connect_errno) 
 	{
 		die( "Huts egin du konexioak MySQL-ra: (". 
 		 $link->connect_errno() . ") " . 
 		 $link->connect_error()	);
-	$link = new mysqli_connect("localhost","root","","quiz");
-
+	}
 	echo" <h4>Sign In</h4>
 	<form id='LogIn' name='LogIn' method='post'>
 		Mail *: <br> <input type ='email' name ='emaila' required><br><br>
@@ -35,7 +34,7 @@ echo "<!DOCTYPE html>
 		echo "Taularen sorrerak huts egin du: (' . 
 		$link->errno . ') ' . $link->error"; 
 	}
-	if(mysql_fetch_lengths($erabilzaileak)==1){
+	if(mysql_fetch_lengths($erabiltzaileak)==1){
 		echo"<a href=''>Quizzes<a/>";
 		
 	}else{
@@ -43,6 +42,6 @@ echo "<!DOCTYPE html>
 	}
 	
 	
-echo"</body>
+	echo"</body>
 	</html>";
 ?>
