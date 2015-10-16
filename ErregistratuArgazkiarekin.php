@@ -42,7 +42,7 @@ echo " <html>
 				<li class ='ezkerra'><a href ='credits.html'>Credits</a></li>
 			</ul>
 			<ul>
-				<li class ='eskuina'><a href ='logIn.html'>Log In</a></li>
+				<li class ='eskuina'><a href ='login.php'>Log In</a></li>
 			</ul>
 		</div>
 		<hr>
