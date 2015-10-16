@@ -98,3 +98,8 @@ function desblokeatu(){
 	var botoia = document.getElementById("espezialitatea");
 	botoia.disabled = false;
 }
+
+function gehitu(){
+	var elem = document.getElementById("sahiakerak");
+	elem.value=elem.value+1;
+}
