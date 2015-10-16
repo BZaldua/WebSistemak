@@ -21,24 +21,24 @@ echo "<!DOCTYPE html>
 		 $link->connect_error()	);
 	}
 	echo" <h4>Sign In</h4>
-	<form id='LogIn' name='LogIn' method='post'>
+	<form id='LogIn' name='LogIn' method='post' enctype='multipart/form-data'>
 		Mail *: <br> <input type ='email' name ='emaila' required><br><br>
 		Password *:<br> <input type='password' name='password' required><br><br>
 		<button	type='submit' value='submit'>Submit</button>
 	</form>";		
 
 	
-	$emaila=$_POST['email'];
-	$pass=$_POST['pasahitza'];
-	if($erabiltzaileak=$link->query("select * from erabiltzaile where email=$emaila and pasahitza=$pass")){
+	$emaila=$_POST['emaila'];
+	$pass=$_POST['password'];
+	if(!$mysqli_result=mysqli_query($link,"select * from erabiltzaile where email='$emaila' and pasahitza='$pass'")){
 		echo "Taularen sorrerak huts egin du: (' . 
 		$link->errno . ') ' . $link->error"; 
 	}
-	if(mysql_fetch_lengths($erabiltzaileak)==1){
-		echo"<a href=''>Quizzes<a/>";
+	if((mysqli_num_rows($mysqli_result))==1){
+		echo"<a href='quiz.html'>Quizzes<a/>";
 		
 	}else{
-		echo"<p color='red'></p>";
+		echo"<p style='color:#D80000'>Erabiltzailea edo pasahitza ez dira zuzenak</p>";
 	}
 	
 	
