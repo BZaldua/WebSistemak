@@ -20,8 +20,8 @@ else
 	}
 	
 $korreoa = $_POST['emaila'];
-$izena = $POST_['izena'];
-$abizena = $POST_['abizena'];
+$izena = $_POST['izena'];
+$abizena = $_POST['abizena'];
 $pasahitza= $_POST['pasahitza'];
 $telefonoa= $_POST['telefonoa'];
 if (filter_var($korreoa, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/[a-z]+[0-9]{3}@ikasle.ehu.e(us|s)/"))) === false) {
