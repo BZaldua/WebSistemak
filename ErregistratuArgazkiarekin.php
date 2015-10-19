@@ -20,8 +20,20 @@ else
 	}
 	
 $korreoa = $_POST['emaila'];
+$izena = $POST_['izena'];
+$abizena = $POST_['abizena'];
+$pasahitza= $_POST['pasahitza'];
+$telefonoa= $_POST['telefonoa'];
 if (filter_var($korreoa, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/[a-z]+[0-9]{3}@ikasle.ehu.e(us|s)/"))) === false) {
 		echo("Emaila ez da zuzena");
+	}else if (filter_var($izena, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/[a-z,A-Z,Ñ,ñ]+/"))) === false){
+		echo("Izena ez da zuzena");
+	}else if (filter_var($abizena, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/[a-z,A-Z,Ñ,ñ]+/"))) === false){
+		echo("Abizena ez da zuzena");
+	}else if (filter_var($pasahitza, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^.{6,}/"))) === false){
+				echo("Pasahitza ez da zuzena");	
+	}else if (filter_var($telefonoa, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/(6|9)[0-9]{8}/"))) === false){
+
 	} else {
 		
 	$sql = "INSERT INTO erabiltzaile (izena, abizena, pasahitza, email, telefonoa, espezialitatea, interesa,argazkia,argazkiMota) VALUES ('$_POST[izena]','$_POST[abizena]','$_POST[pasahitza]','$korreoa','$_POST[telefonoa]','$esp','$_POST[interesa]','$image','$image_name')";
