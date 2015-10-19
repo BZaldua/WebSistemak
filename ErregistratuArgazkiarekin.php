@@ -1,6 +1,10 @@
 <?php
-$link = mysql_connect("localhost","root","") or die(mysql_error());
-mysql_select_db("quiz") or die(mysql_error());
+//$link = mysql_connect("localhost","root","") or die(mysql_error());
+//mysql_select_db("quiz") or die(mysql_error());
+
+ $link = mysql_connect("mysql.hostinger.es","u526113874_rb15","12345679");
+ mysql_select_db("u526113874_quiz") or die(mysql_error());
+ 
 
 $esp = $_POST['espezialitatea'];
 if ($esp == 'other'){
