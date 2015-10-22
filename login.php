@@ -69,6 +69,7 @@ $message = "Wrong email or password";
 				<li class ="ezkerra"><a href ="layout.html">Home</a></li>
 				<li class ="ezkerra"><a href ="credits.html">Credits</a></li>
 				<li class ="ezkerra"><a href ="signUp.html">Sign Up </a></li>
+				<li class ="ezkerra"><a href ="quiz.php">Quizzes</a></li>
 			</ul>
 	</div>
 	<br><hr>
