@@ -75,6 +75,11 @@ height:90px;
 	margin:auto;
 }
 
-#galderakTaula td{
+#tdg{
 	font-style:italic;
+	text-align:left;
+}
+
+#tdz{
+	text-align:center;
 }

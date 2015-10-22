@@ -39,7 +39,7 @@ if($user == $user2 && $password == $pass2)
  $_SESSION['session_username']=$user;
  
 /* Redirect browser */
- header("Location: InserQuestion.php");
+ header("Location: InsertQuestion.php");
  }
  } else {
  

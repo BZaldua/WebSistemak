@@ -47,8 +47,8 @@
 				while ($row = mysqli_fetch_assoc($erantzunak)){
 					echo "
 					<tr>
-						<td>".$row['galdera']."</td>
-						<td>".$row['zailtasuna']."</td>
+						<td id='tdg'>".$row['galdera']."</td>
+						<td id='tdz'>".$row['zailtasuna']."</td>
 					</tr>";
 				}
 				echo "</table>";
