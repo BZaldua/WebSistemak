@@ -1,8 +1,8 @@
 <?php
 session_start();
  
-//$link = new mysqli("localhost","root","","quiz");
-$link = new mysqli("mysql.hostinger.es","u526113874_rb15","123456789","u526113874_quiz");
+$link = new mysqli("localhost","root","","quiz");
+//$link = new mysqli("mysql.hostinger.es","u526113874_rb15","123456789","u526113874_quiz");
 if($link->connect_errno) {
 		die( "Huts egin du konexioak MySQL-ra: (". 
 		$link->connect_errno() . ") " . 
@@ -36,7 +36,20 @@ if($user == $user2 && $password == $pass2)
  
 {
  
+ 
  $_SESSION['session_username']=$user;
+$ordua= Date('H:i:s');
+
+ $konexioa=$link-> query("SELECT emaila FROM konexioak WHERE emaila=$user");
+	 $konkop= mysqli_num_rows($konexioa);
+	if($konkop=0){
+		$sql= "INSERT INTO konexioak(emaila,ordua) values ('$user','$ordua')";
+	}else{
+		$sql="UPDATE konexioak SET ordua='$ordua' WHERE emaila='$user'";	
+	}
+ if (!$link -> query($sql)){
+			die("<p>An error happened: ".$link -> error()."</p>");
+		}
  
 /* Redirect browser */
  header("Location: InsertQuestion.php");

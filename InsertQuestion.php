@@ -1,8 +1,8 @@
 <?php 
 session_start();
 
-	//$link = new mysqli("localhost","root","","quiz");	
-	$link = new mysqli("mysql.hostinger.es","u526113874_rb15","123456789","u526113874_quiz");
+	$link = new mysqli("localhost","root","","quiz");	
+	//$link = new mysqli("mysql.hostinger.es","u526113874_rb15","123456789","u526113874_quiz");
 	if($link->connect_errno) {
 		die( "Huts egin du konexioak MySQL-ra: (". 
 		$link->connect_errno() . ") " . 
@@ -15,17 +15,29 @@ session_start();
 	
 	
 	if(isset($_POST['bidali'])){
+		$emaila=$_SESSION["session_username"];
 		$galdera = isset($_POST['galdera']) ? $_POST['galdera'] : '';
 		$erantzuna = isset($_POST['erantzuna']) ? $_POST['erantzuna'] : '';
 		$zailtasuna = isset($_POST['zailtasuna']) ? $_POST['zailtasuna'] : '';
-		$id = $link -> query("Select count(id) from galdera");
-		$elementua = mysqli_fetch_assoc($id);
-		$idBerria = (int)$elementua['count(id)'] +1;
 		
-		$sql = "INSERT INTO galdera (id, galdera, erantzuna, zailtasuna) VALUES ('$idBerria','$galdera','$erantzuna','$zailtasuna')";
 		
+		$sql = "INSERT INTO galdera (galdera, erantzuna, zailtasuna, emaila) VALUES ('$galdera','$erantzuna','$zailtasuna','$emaila')";
+		$link -> query($sql);
 		if (!$link -> query($sql)){
 			die("<p>An error happened: ".$link -> error()."</p>");
+		}
+		if(!$idKonexioa= $link-> query("SELECT id FROM konexioak WHERE emaila='$emaila'")){
+						die("<p>An error happened: ".$link -> error."</p>");
+
+		}
+		$row = mysqli_fetch_array($idKonexioa);
+		$konexID=intval($row['id']);
+		$mota="galdera txertatu";
+		$ordua= Date('H:i:s');
+		$ip = $_SERVER['REMOTE_ADDR'];
+		$sql1= "INSERT INTO ekintzak (konexID, emaila, mota, time, ip) values ('$konexID', '$emaila', '$mota','$ordua','$ip')";
+		if (!$link -> query($sql1)){
+			die("<p>An error happened: ".$link -> error."</p>");
 		}
 	}
 ?>
