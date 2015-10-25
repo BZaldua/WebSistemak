@@ -1,4 +1,7 @@
 <?php 
+
+	session_start();
+
 	$link = new mysqli("localhost","root","","quiz");	
 	//$link = new mysqli("mysql.hostinger.es","u526113874_rb15","123456789","u526113874_quiz");
 	if($link->connect_errno) {
@@ -6,6 +9,28 @@
 		$link->connect_errno() . ") " . 
 		$link->connect_error()	);
 	}
+	
+	
+		$mota="Galderak ikusi";
+		$ordua= Date('H:i:s');
+		$ip = $_SERVER['REMOTE_ADDR'];
+		if(isset($_SESSION["session_username"])){
+			$emaila=$_SESSION["session_username"];
+			if(!$idKonexioa= $link-> query("SELECT id FROM konexioak WHERE emaila='$emaila'")){
+						die("<p>An error happened: ".$link -> error."</p>");
+
+				}
+		$row = mysqli_fetch_array($idKonexioa);
+		$konexID=intval($row['id']);
+			$sql1= "INSERT INTO ekintzak (konexID, emaila, mota, time, ip) values ('$konexID', '$emaila', '$mota','$ordua','$ip')";
+		}else{
+			$sql1=  "INSERT INTO ekintzak (mota, time, ip) values ('$mota','$ordua','$ip')";
+		}
+		if (!$link -> query($sql1)){
+			die("<p>An error happened: ".$link -> error."</p>");
+		}
+	
+	
 ?>
 
 <!DOCTYPE html>
