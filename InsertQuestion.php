@@ -22,7 +22,6 @@ session_start();
 		
 		
 		$sql = "INSERT INTO galdera (galdera, erantzuna, zailtasuna, emaila) VALUES ('$galdera','$erantzuna','$zailtasuna','$emaila')";
-		$link -> query($sql);
 		if (!$link -> query($sql)){
 			die("<p>An error happened: ".$link -> error()."</p>");
 		}
@@ -35,7 +34,6 @@ session_start();
 		$mota="galdera txertatu";
 		$ordua= Date('H:i:s');
 		$ip = $_SERVER['REMOTE_ADDR'];
-		echo $ip;
 		$sql1= "INSERT INTO ekintzak (konexID, emaila, mota, time, ip) values ('$konexID', '$emaila', '$mota','$ordua','$ip')";
 		if (!$link -> query($sql1)){
 			die("<p>An error happened: ".$link -> error."</p>");
