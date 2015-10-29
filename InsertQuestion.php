@@ -13,6 +13,8 @@ session_start();
 		header("Location: login.php");
 	}
 	
+	//xml irekiera.
+	$xml= simplexml_load_file('galderak.xml');
 	
 	if(isset($_POST['bidali'])){
 		$emaila=$_SESSION["session_username"];
@@ -22,9 +24,18 @@ session_start();
 		
 		
 		$sql = "INSERT INTO galdera (galdera, erantzuna, zailtasuna, emaila) VALUES ('$galdera','$erantzuna','$zailtasuna','$emaila')";
-		$link -> query($sql);
 		if (!$link -> query($sql)){
-			die("<p>An error happened: ".$link -> error()."</p>");
+			die("<p>An error happened: ".$link -> error."</orp>");
+		}else{
+				$assessmentItem= $xml-> addChild('assessmentItem');
+				$assessmentItem-> addAttribute('konplexutasuna',$zailtasuna);
+				$itemBody= $assessmentItem ->addChild('itemBody');
+				$itemBody->addChild('p',$galdera);
+				$correctResponse= $assessmentItem-> addChild('correctResponse');
+				$correctResponse-> addChild('value',$erantzuna);	
+				$xml-> asXML('galderak.xml');
+				echo "<a href='galderak.xml'>XML fitxategia</a>";
+				
 		}
 		if(!$idKonexioa= $link-> query("SELECT id FROM konexioak WHERE emaila='$emaila'")){
 						die("<p>An error happened: ".$link -> error."</p>");
@@ -35,7 +46,6 @@ session_start();
 		$mota="galdera txertatu";
 		$ordua= Date('H:i:s');
 		$ip = $_SERVER['REMOTE_ADDR'];
-		echo $ip;
 		$sql1= "INSERT INTO ekintzak (konexID, emaila, mota, time, ip) values ('$konexID', '$emaila', '$mota','$ordua','$ip')";
 		if (!$link -> query($sql1)){
 			die("<p>An error happened: ".$link -> error."</p>");
