@@ -23,7 +23,7 @@ session_start();
 		
 		$sql = "INSERT INTO galdera (galdera, erantzuna, zailtasuna, emaila) VALUES ('$galdera','$erantzuna','$zailtasuna','$emaila')";
 		if (!$link -> query($sql)){
-			die("<p>An error happened: ".$link -> error()."</p>");
+			die("<p>An error happened: ".$link -> error."</orp>");
 		}
 		if(!$idKonexioa= $link-> query("SELECT id FROM konexioak WHERE emaila='$emaila'")){
 						die("<p>An error happened: ".$link -> error."</p>");
