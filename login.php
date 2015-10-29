@@ -42,10 +42,8 @@ if($user == $user2 && $password == $pass2){
  $konexioa=$link-> query("SELECT emaila FROM konexioak WHERE emaila=$user");
 	 $konkop= mysqli_num_rows($konexioa);
 	if($konkop==0){
-		echo "pepi";
 		$sql= "INSERT INTO konexioak(emaila,ordua) values ('$user','$ordua')";
 	}else{
-		echo"hola";
 		$sql="UPDATE konexioak SET ordua='$ordua' WHERE emaila='$user'";	
 	}
  if (!$link -> query($sql)){
