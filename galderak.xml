@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <assessmentItems>
-	<assessmentItem konplexutasuna="3" subject="Mikologia">
+	<assessmentItem konplexutasuna="3" gaia="Mikologia">
 		<itemBody> 
 			<p>Amanita muskaria zer da?</p>
 		</itemBody>
@@ -8,7 +8,7 @@
 			<value>Perretxikoa</value>
 		</correctResponse>
 	</assessmentItem>
-	<assessmentItem konplexutasuna="5" subject="Mikologia">
+	<assessmentItem konplexutasuna="5" gaia="Mikologia">
 		<itemBody>
 			<p>Amanita hilkorrena da:</p>
 		</itemBody>
