@@ -15,10 +15,7 @@
 				<li class ="ezkerra"><a href ="layout.html">Home</a></li>
 				<li class ="ezkerra"><a href ="credits.html">Credits</a></li>
 				<li class ="ezkerra"><a href ="quiz.php">Quizzes</a></li>
-			</ul>
-			<ul>
-				<li class ="eskuina"><a href ="login.php">Log In</a></li>
-			</ul>
+			</ul><br>
 		</div>
 		<hr>
 		<center><h1>XML Fitxategia </h1><center>
@@ -40,5 +37,6 @@
 	}
 ?>
 	</table>
+	<?php echo "<a href ='InsertQuestion.php'> Go Back </a>"?>
 </body>
 </html>
