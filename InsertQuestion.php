@@ -36,7 +36,8 @@ session_start();
 				$correctResponse-> addChild('value',$erantzuna);	
 				$xml-> asXML('galderak.xml');
 				echo "<a href='galderak.xml'>XML fitxategia</a><br>";
-				echo "<a href ='seeXMLQuestions.php'>Ikusi galderak</a>";
+				echo "<a href ='seeXMLQuestions.php'>Ikusi galderak</a><br>";
+				echo "<a href ='transformazioaXSL.php'>Transformazioarekin ikusi</a>";
 				
 		}
 		if(!$idKonexioa= $link-> query("SELECT id FROM konexioak WHERE emaila='$emaila'")){

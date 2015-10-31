@@ -2,8 +2,8 @@
 
 	session_start();
 
-	$link = new mysqli("localhost","root","","quiz");	
-	//$link = new mysqli("mysql.hostinger.es","u526113874_rb15","123456789","u526113874_quiz");
+	//$link = new mysqli("localhost","root","","quiz");	
+	$link = new mysqli("mysql.hostinger.es","u526113874_rb15","123456789","u526113874_quiz");
 	if($link->connect_errno) {
 		die( "Huts egin du konexioak MySQL-ra: (". 
 		$link->connect_errno() . ") " . 
