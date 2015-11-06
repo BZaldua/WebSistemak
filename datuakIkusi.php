@@ -18,7 +18,7 @@ $link->connect_error()	);
 				<th id='gt2'>Difficulty</th>
 			</tr>";
 			
-		$erantzunak = $link ->query("Select galdera, zailtasuna from galdera");
+		$erantzunak = $link ->query("Select galdera, zailtasuna from galdera where emaila = '$emaila'");
 		while ($row = mysqli_fetch_assoc($erantzunak)){
 			echo "
 			<tr>

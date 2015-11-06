@@ -10,7 +10,7 @@ if($link->connect_errno) {
 }
  
 if(isset($_SESSION["session_username"])){
-header("Location: InsertQuestion.php");
+header("Location: handlingQuizzes.php");
 }
  
 if(isset($_POST["login"])){
