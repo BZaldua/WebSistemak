@@ -12,17 +12,16 @@ session_start();
 	if(!isset($_SESSION["session_username"])){
 		header("Location: login.php");
 	}
-	
+	 
 	//xml irekiera.
 	$xml= simplexml_load_file('galderak.xml');
 	
-	if(isset($_POST['bidali'])){
 		$emaila=$_SESSION["session_username"];
 		$galdera = isset($_POST['galdera']) ? $_POST['galdera'] : '';
 		$erantzuna = isset($_POST['erantzuna']) ? $_POST['erantzuna'] : '';
 		$zailtasuna = isset($_POST['zailtasuna']) ? $_POST['zailtasuna'] : '';
-		$gaia = isset($_POST['gaia']) ? $_POST['gaia'] : '';		
-		
+		$gaia = isset($_POST['gaia']) ? $_POST['gaia'] : '';
+
 		$sql = "INSERT INTO galdera (galdera, erantzuna, zailtasuna, emaila, gaia) VALUES ('$galdera','$erantzuna','$zailtasuna','$emaila', '$gaia')";
 		if (!$link -> query($sql)){
 			die("<p>An error happened: ".$link -> error."</orp>");
@@ -35,10 +34,12 @@ session_start();
 				$correctResponse= $assessmentItem-> addChild('correctResponse');
 				$correctResponse-> addChild('value',$erantzuna);	
 				$xml-> asXML('galderak.xml');
+				echo "<p style='background-color:green;color:white;text-align:center;font-weight:bold;'>One new entry added </p>";
+				echo "<center>";
 				echo "<a href='galderak.xml'>XML fitxategia</a><br>";
 				echo "<a href ='seeXMLQuestions.php'>Ikusi galderak</a><br>";
 				echo "<a href ='transformazioaXSL.php'>Transformazioarekin ikusi</a>";
-				
+				echo "</center>";
 		}
 		if(!$idKonexioa= $link-> query("SELECT id FROM konexioak WHERE emaila='$emaila'")){
 						die("<p>An error happened: ".$link -> error."</p>");
@@ -53,56 +54,4 @@ session_start();
 		if (!$link -> query($sql1)){
 			die("<p>An error happened: ".$link -> error."</p>");
 		}
-	}
 ?>
-
-
-
-<!DOCTYPE html>
-<html>
-<head>
-	<meta name="tipo_contenido" content="text/html;" http-equiv="content-type" charset="utf-8">
-	<title>Insert Question</title>
-	<link rel="stylesheet" type="text/css" href="stylesPWS/estiloa.css">
-	<link rel='stylesheet' 
-		   type='text/css' 
-		   media='only screen and (max-width: 480px)'
-		   href='stylesPWS/smartphone.css' />
-</head>
-
-<body>
-
-
-	<div class ="nav" id="nav">
-			<ul>
-				<li class ="ezkerra"><a href ="layout.html">Home</a></li>
-				<li class ="ezkerra"><a href ="credits.html">Credits</a></li>
-				<li class ="ezkerra"><a href ="signUp.html">Sign Up </a></li>
-				<li class ="ezkerra"><a href ="quiz.php">Quizzes</a></li>
-			</ul>
-	</div>
-	<br><hr>
-	<center>
-	<h1> Insert Question </h1>
-	
-	<form method = 'post' name ="addQuestion" id="addQuestion">
-		<label>Question</label></br>
-		<textarea id ="galdera" name="galdera" rows="4" cols="50" required></textarea><br/><br/>
-		<label>Answer</label></br>
-		<input type ="text" name="erantzuna" id="erantzuna" required> <br/><br/>
-		<label>Difficulty </label>
-		<select name='zailtasuna' id='zailtasuna'>
-			<option value="1">1</option>
-			<option value="2">2</option>
-			<option value="3">3</option>
-			<option value="4">4</option>
-			<option value="5">5</option>
-		</select><br><br>
-		<label>Topic</label><br>
-		<input type="text" id ="gaia" name="gaia" required><br><br>
-		<button type='submit' name='bidali'>Submit</button>
-	</form>
-	</center>
-</body>
-
-</html>

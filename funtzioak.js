@@ -33,7 +33,7 @@ function balidatu(){
 }
 
 function izenaBeteta(izen){
-	var re=new RegExp("[a-z,A-Z,Ã‘,Ã±]+");
+	var re=new RegExp("[a-z,A-Z,Ñ,ñ]+");
 	return re.test(izen);
 }
 
@@ -98,3 +98,17 @@ function desblokeatu(){
 	var botoia = document.getElementById("espezialitatea");
 	botoia.disabled = false;
 }
+
+XMLHttpRequestObject.onreadystatechange = function(){
+	if((XMLHttpRequestObject.readyState == 4) && (XMLHttpRequestObject.status == 200)){
+		var obj = document.getElementByID('galderakIkusi');
+		obj.innerHTML = XMLHttpRequestObject.responseText;
+	}
+}
+
+
+function datuakIkusi(){
+	XMLHttpRequestObject.open("GET","datuakIkusi.php",true);
+	XMLHttpRequestObject.send();
+}
+
