@@ -1,3 +1,9 @@
+<?php 
+session_start();
+	if(!isset($_SESSION["session_username"])){
+		header("Location: login.php");
+	}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,24 +16,36 @@
 		   href='stylesPWS/smartphone.css' />
 	<script type="text/javascript" language="javascript">
 	
-		XMLHttpRequestObject = new XMLHttpRequest();
-		XMLHttpRequestObject.onreadystatechange = function(){
+		//XMLHttpRequestObject = new XMLHttpRequest();
+		/*XMLHttpRequestObject.onreadystatechange = function(){
+			if((XMLHttpRequestObject.readyState == 4) && (XMLHttpRequestObject.status == 200)){
+				document.getElementById('galderakIkusi').innerHTML = XMLHttpRequestObject.responseText;
+			}
+		}*/
+
+		function datuakIkusi(){
+			XMLHttpRequestObject = new XMLHttpRequest();
+			XMLHttpRequestObject.open("GET","datuakIkusi.php",true);
+			XMLHttpRequestObject.onreadystatechange = function(){
 			if((XMLHttpRequestObject.readyState == 4) && (XMLHttpRequestObject.status == 200)){
 				document.getElementById('galderakIkusi').innerHTML = XMLHttpRequestObject.responseText;
 			}
 		}
-
-		function datuakIkusi(){
-			XMLHttpRequestObject.open("GET","datuakIkusi.php",true);
 			XMLHttpRequestObject.send();
 		}
 		function galderaGehitu(){
+			XMLHttpRequestObject = new XMLHttpRequest();
 			var g = document.getElementById('galdera').value; //Galdera lortu
 			var e = document.getElementById('erantzuna').value; //Erantzuna lortu
 			var z = document.getElementById('zailtasuna').value; //Zailtasuna lortu
 			var t = document.getElementById('gaia').value; //Gaia lortu: t=topic
 			var parametroak = "galdera="+g+"&erantzuna="+e+"&zailtasuna="+z+"&gaia="+t;
 			XMLHttpRequestObject.open("POST","galderaGehitu.php",true); 
+			XMLHttpRequestObject.onreadystatechange = function(){
+			if((XMLHttpRequestObject.readyState == 4) && (XMLHttpRequestObject.status == 200)){
+				document.getElementById('galderakIkusi').innerHTML = XMLHttpRequestObject.responseText;
+			}
+		}
 			XMLHttpRequestObject.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			XMLHttpRequestObject.send(parametroak);
 			garbitu();
@@ -43,10 +61,22 @@
 			var gai = document.getElementById('gaia'); 
 			gai.value="";
 		}
+			function galderaKop(){
+			XMLHttpRequestObject = new XMLHttpRequest();	
+			XMLHttpRequestObject.open('GET',"galderaKop.php",true);
+			XMLHttpRequestObject.onreadystatechange = function(){
+			if((XMLHttpRequestObject.readyState == 4) && (XMLHttpRequestObject.status == 200)){
+				document.getElementById('galderaKop').innerHTML = XMLHttpRequestObject.responseText;
+			}
+		}
+			XMLHttpRequestObject.send();			
+		}
+		setInterval(galderaKop,5000);
+	
 	</script>
 </head>
 
-<body>
+<body onLoad='galderaKop()'>
 
 
 	<div class ="nav" id="nav">
@@ -77,6 +107,9 @@
 		</select><br><br>
 		<label>Topic</label><br>
 		<input type="text" id ="gaia" name="gaia" required><br><br>
+		<div name='galderaKop' id='galderaKop'>
+	<!-- Erabiltzailearen galdera kopurua  eta datu-baseak dituen galderen kopurua-->
+	</div>
 	</form>
 	<input type="button" onclick="return galderaGehitu()" name='bidali' id='bidali'value="Galdera gehitu"></input>
 	<input type='button' name='ikusi' id='ikusi' onClick='return datuakIkusi()' value='Ikusi Nire Galderak'></input>
