@@ -16,6 +16,7 @@ session_start();
 	//xml irekiera.
 	$xml= simplexml_load_file('galderak.xml');
 	
+	if(isset($galdera) && isset($erantzuna) && isset($zailtasuna) && $gaia){
 		$emaila=$_SESSION["session_username"];
 		$galdera = isset($_POST['galdera']) ? $_POST['galdera'] : '';
 		$erantzuna = isset($_POST['erantzuna']) ? $_POST['erantzuna'] : '';
@@ -54,4 +55,7 @@ session_start();
 		if (!$link -> query($sql1)){
 			die("<p>An error happened: ".$link -> error."</p>");
 		}
+	}else{
+		echo "<p style='background-color:red;color:white;text-align:center;font-weight:bold'>All fields must be completed </p>";
+	}
 ?>
