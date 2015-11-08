@@ -16,13 +16,13 @@ session_start();
 	//xml irekiera.
 	$xml= simplexml_load_file('galderak.xml');
 	
-	if(isset($galdera) && isset($erantzuna) && isset($zailtasuna) && $gaia){
 		$emaila=$_SESSION["session_username"];
 		$galdera = isset($_POST['galdera']) ? $_POST['galdera'] : '';
 		$erantzuna = isset($_POST['erantzuna']) ? $_POST['erantzuna'] : '';
 		$zailtasuna = isset($_POST['zailtasuna']) ? $_POST['zailtasuna'] : '';
 		$gaia = isset($_POST['gaia']) ? $_POST['gaia'] : '';
 
+	if(($galdera != '') && ($erantzuna != '') && ($zailtasuna != '') && ($gaia != '')){
 		$sql = "INSERT INTO galdera (galdera, erantzuna, zailtasuna, emaila, gaia) VALUES ('$galdera','$erantzuna','$zailtasuna','$emaila', '$gaia')";
 		if (!$link -> query($sql)){
 			die("<p>An error happened: ".$link -> error."</orp>");
