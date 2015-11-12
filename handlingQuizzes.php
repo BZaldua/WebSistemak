@@ -16,12 +16,7 @@ session_start();
 		   href='stylesPWS/smartphone.css' />
 	<script type="text/javascript" language="javascript">
 	
-		//XMLHttpRequestObject = new XMLHttpRequest();
-		/*XMLHttpRequestObject.onreadystatechange = function(){
-			if((XMLHttpRequestObject.readyState == 4) && (XMLHttpRequestObject.status == 200)){
-				document.getElementById('galderakIkusi').innerHTML = XMLHttpRequestObject.responseText;
-			}
-		}*/
+	
 
 		function datuakIkusi(){
 			XMLHttpRequestObject = new XMLHttpRequest();
