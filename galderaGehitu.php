@@ -22,6 +22,7 @@ session_start();
 		$zailtasuna = isset($_POST['zailtasuna']) ? $_POST['zailtasuna'] : '';
 		$gaia = isset($_POST['gaia']) ? $_POST['gaia'] : '';
 
+	if(($galdera != '') && ($erantzuna != '') && ($zailtasuna != '') && ($gaia != '')){
 		$sql = "INSERT INTO galdera (galdera, erantzuna, zailtasuna, emaila, gaia) VALUES ('$galdera','$erantzuna','$zailtasuna','$emaila', '$gaia')";
 		if (!$link -> query($sql)){
 			die("<p>An error happened: ".$link -> error."</orp>");
@@ -54,4 +55,7 @@ session_start();
 		if (!$link -> query($sql1)){
 			die("<p>An error happened: ".$link -> error."</p>");
 		}
+	}else{
+		echo "<p style='background-color:red;color:white;text-align:center;font-weight:bold'>All fields must be completed </p>";
+	}
 ?>
