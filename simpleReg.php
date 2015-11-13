@@ -18,26 +18,26 @@
 			}
 			function konprobatuEmaila(){
 				XMLHttpRequestObject1 = new XMLHttpRequest();
-			var e = document.getElementById('emaila').value; //Emaila lortu
-			XMLHttpRequestObject1.open("GET","soapBezEgiaztatuMatrikulaAJAX.php?emaila="+e,true); 
-			XMLHttpRequestObject1.onreadystatechange = function(){
-			if((XMLHttpRequestObject1.readyState == 4) && (XMLHttpRequestObject.status == 200)){
-				document.getElementById('emailErantzun').innerHTML = XMLHttpRequestObject1.responseText;
-			}
-		}
-			XMLHttpRequestObject1.send();				
+				var e = document.getElementById('emaila').value; //Emaila lortu
+				XMLHttpRequestObject1.open("GET","soapBezEgiaztatuMatrikulaAJAX.php?emaila="+e,true); 
+				XMLHttpRequestObject1.onreadystatechange = function(){
+					if((XMLHttpRequestObject1.readyState == 4) && (XMLHttpRequestObject1.status == 200)){
+						document.getElementById('emailErantzun').innerHTML = XMLHttpRequestObject1.responseText;
+					}
+				}
+				XMLHttpRequestObject1.send();				
 			}
 			
 			function konprobatuPass(){				
 					XMLHttpRequestObject = new XMLHttpRequest();
-			var e = document.getElementById('pasahitza').value; //Emaila lortu
-			XMLHttpRequestObject.open("GET","soapBezEgiaztatuPasahitzaAJAX.php?pasahitza="+e,true); 
-			XMLHttpRequestObject.onreadystatechange = function(){
-			if((XMLHttpRequestObject.readyState == 4) && (XMLHttpRequestObject.status == 200)){
-				document.getElementById('passErantzun').innerHTML = XMLHttpRequestObject.responseText;
-			}
-		}
-			XMLHttpRequestObject.send();
+					var e = document.getElementById('pasahitza').value; //Emaila lortu
+					XMLHttpRequestObject.open("GET","soapBezEgiaztatuPasahitzaAJAX.php?pasahitza="+e,true); 
+					XMLHttpRequestObject.onreadystatechange = function(){
+						if((XMLHttpRequestObject.readyState == 4) && (XMLHttpRequestObject.status == 200)){
+							document.getElementById('passErantzun').innerHTML = XMLHttpRequestObject.responseText;
+						}
+					}
+					XMLHttpRequestObject.send();
 			}
 		</script>
 	</head>
