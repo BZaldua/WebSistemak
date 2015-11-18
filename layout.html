@@ -12,12 +12,24 @@
 		   type='text/css' 
 		   media='only screen and (max-width: 480px)'
 		   href='stylesPWS/smartphone.css' />
+		   
+		   <script>
+		   function sesioaHasieratua(){
+					var xhr = new XMLHttpRequest();
+					xhr.open('GET','sesioEgoera.php',true);
+					xhr.onreadystatechange = function(){
+						if((xhr.readyState == 4) && (xhr.status == 200)){
+							document.getElementById('logEsteka').innerHTML = xhr.responseText;
+						}	
+					}
+					xhr.send();
+				}
+		   </script>
   </head>
-  <body>
+  <body onload="sesioaHasieratua()">
   <div id='page-wrap'>
 	<header class='main' id='h1'>
-      <span class="right"><a href="login.php">Login</a></span>
-      <span class="right" style="display:none;"><a href="/logout">Logout</a></span>
+      <span class="right" id = "logEsteka"></span>
 	<h2>Quiz: crazy questions</h2>
     </header>
 	<nav class='main' id='n1' role='navigation'>
