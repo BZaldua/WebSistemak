@@ -47,7 +47,7 @@ if(isset($_POST["login"])){
 				die("<p>An error happened: ".$link -> error()."</p>");
 			}
 		if($_SESSION['session_username']=='web000@ehu.es'){
-			header:("Location: galderakEditatu.php")
+			header("Location: galderakEditatu.php");
 		}else{
 			/* Redirect browser */
 			header("Location: handlingQuizzes.php");
@@ -56,12 +56,12 @@ if(isset($_POST["login"])){
 	 } else {
 	 
 	$message = "Wrong email or password";
-	 
+	 }
 	 
 	} else {
 	 $message = "Something went wrong";
 	}
-	}
+	
 }
 }
 ?>
