@@ -111,4 +111,3 @@ function datuakIkusi(){
 	XMLHttpRequestObject.open("GET","datuakIkusi.php",true);
 	XMLHttpRequestObject.send();
 }
-

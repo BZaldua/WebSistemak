@@ -1,5 +1,4 @@
 <?php 
-
 	session_start();
 
 	$link = new mysqli("localhost","root","","quiz");	
@@ -52,7 +51,13 @@
 				<li class ="ezkerra"><a href ="signUp.html">Sign Up</a></li>
 			</ul>
 			<ul>
-				<li class ="eskuina"><a href ="login.php">Log In</a></li>
+			<?php
+				if(!isset($_SESSION['session_username'])){
+					echo "<li class ='eskuina'><a href ='login.php'>Log In</a></li>";
+				}else{
+					echo "<li class ='eskuina'><a href ='logOut.php'>Log Out</a></li>";
+				}
+			?>
 			</ul>
 		</div>
 		<hr/>
