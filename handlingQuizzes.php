@@ -81,8 +81,11 @@ session_start();
 				<li class ="ezkerra"><a href ="signUp.html">Sign Up </a></li>
 				<li class ="ezkerra"><a href ="quiz.php">Quizzes</a></li>
 			</ul>
+			<ul>
+				<li class ="eskuina"><a href ="logout.php">Log Out</a></li>
+			</ul>
 	</div>
-	<br><hr>
+	<hr>
 	
 	<center>
 	<h1> Insert Question </h1>

@@ -13,8 +13,12 @@
 		</script> -->
 		<script>
 			function konprobatu(){
-				konprobatuEmaila();
-				konprobatuPass();
+				if(document.getElementById('pasahitza1').value==document.getElementById('pasahitza').value){
+					konprobatuEmaila();
+					konprobatuPass();
+				}else{
+					alert("Pasahitzak berdinak izan behar dira.");
+				}
 			}
 			function konprobatuEmaila(){
 				XMLHttpRequestObject1 = new XMLHttpRequest();
@@ -60,6 +64,7 @@
 		<form id="erregistro" name="erregistro" onSubmit="return balidatu()" action ="ErregistratuArgazkiarekin.php" enctype="multipart/form-data" method ="post">
 				Mail *: <br> <input type ='email' name ="emaila" id="emaila"required><br><br>
 				Password *: <br><input type ='password' name ="pasahitza" id="pasahitza" required><br><br>
+				Repeat your password *:<br><input type ='password' name ="pasahitza1" id="pasahitza1" required><br><br>
 				<input type="button" value="Submit" onclick="konprobatu()"></input>
 		</form>
 	</div>

@@ -49,9 +49,12 @@ if($user == $user2 && $password == $pass2){
  if (!$link -> query($sql)){
 			die("<p>An error happened: ".$link -> error()."</p>");
 		}
- 
-/* Redirect browser */
- header("Location: handlingQuizzes.php");
+	if($_SESSION['session_username']=='web000@ehu.es'){
+		header:("Location: galderakEditatu.php")
+	}else{
+		/* Redirect browser */
+		header("Location: handlingQuizzes.php");
+	}
  }
  } else {
  
