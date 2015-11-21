@@ -47,7 +47,7 @@ if(isset($_POST["login"])){
 				die("<p>An error happened: ".$link -> error()."</p>");
 			}
 		if($_SESSION['session_username']=='web000@ehu.es'){
-			header("Location: galderakEditatu.php");
+			header("Location: reviewingQuizzes.php");
 		}else{
 			/* Redirect browser */
 			header("Location: handlingQuizzes.php");
