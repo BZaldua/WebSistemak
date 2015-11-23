@@ -40,7 +40,7 @@ if (filter_var($korreoa, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"
 
 	} else {
 		
-	$sql = "INSERT INTO erabiltzaile (izena, abizena, pasahitza, email, telefonoa, espezialitatea, interesa,argazkia,argazkiMota) VALUES ('$_POST[izena]','$_POST[abizena]','$_POST[pasahitza]','$korreoa','$_POST[telefonoa]','$esp','$_POST[interesa]','$image','$image_name')";
+	$sql = "INSERT INTO erabiltzaile (izena, abizena, pasahitza, email, telefonoa, espezialitatea, interesa,argazkia,argazkiMota,galderaPasahitza,erantzunaPasahitza) VALUES ('$_POST[izena]','$_POST[abizena]','$_POST[pasahitza]','$korreoa','$_POST[telefonoa]','$esp','$_POST[interesa]','$image','$image_name','$_POST[question]','$_POST[answer]')";
 echo " <html>
 	<head>
 		<meta name='tipo_contenido' content='text/html;' http-equiv='content-type' charset='utf-8'>
