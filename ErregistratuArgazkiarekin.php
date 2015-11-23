@@ -1,9 +1,9 @@
 <?php
-//$link = mysql_connect("localhost","root","") or die(mysql_error());
-//mysql_select_db("quiz") or die(mysql_error());
+$link = mysql_connect("localhost","root","") or die(mysql_error());
+mysql_select_db("quiz") or die(mysql_error());
 
- $link = mysql_connect("mysql.hostinger.es","u526113874_rb15","123456789");
- mysql_select_db("u526113874_quiz") or die(mysql_error());
+ //$link = mysql_connect("mysql.hostinger.es","u526113874_rb15","123456789");
+// mysql_select_db("u526113874_quiz") or die(mysql_error());
  
 
 $esp = $_POST['espezialitatea'];
@@ -27,6 +27,7 @@ $korreoa = $_POST['emaila'];
 $izena = $_POST['izena'];
 $abizena = $_POST['abizena'];
 $pasahitza= $_POST['pasahitza'];
+
 $telefonoa= $_POST['telefonoa'];
 if (filter_var($korreoa, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/[a-z]+[0-9]{3}@ikasle.ehu.e(us|s)/"))) === false) {
 		echo("Emaila ez da zuzena");
@@ -39,8 +40,8 @@ if (filter_var($korreoa, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"
 	}else if (filter_var($telefonoa, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/(6|9)[0-9]{8}/"))) === false){
 
 	} else {
-		
-	$sql = "INSERT INTO erabiltzaile (izena, abizena, pasahitza, email, telefonoa, espezialitatea, interesa,argazkia,argazkiMota) VALUES ('$_POST[izena]','$_POST[abizena]','$_POST[pasahitza]','$korreoa','$_POST[telefonoa]','$esp','$_POST[interesa]','$image','$image_name')";
+		$pasahitza= crypt($pasahitza,'st');
+	$sql = "INSERT INTO erabiltzaile (izena, abizena, pasahitza, email, telefonoa, espezialitatea, interesa,argazkia,argazkiMota) VALUES ('$_POST[izena]','$_POST[abizena]','$pasahitza','$korreoa','$_POST[telefonoa]','$esp','$_POST[interesa]','$image','$image_name')";
 echo " <html>
 	<head>
 		<meta name='tipo_contenido' content='text/html;' http-equiv='content-type' charset='utf-8'>

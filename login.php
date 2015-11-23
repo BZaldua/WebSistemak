@@ -19,7 +19,7 @@ if(isset($_POST["login"])){
 		$user=$_POST['emaila'];
 		$password=$_POST['password'];
 	 
-		$erabiltzaileak =$link -> query("SELECT * FROM erabiltzaile WHERE email='".$user."' AND pasahitza='".$password."'");
+		$erabiltzaileak =$link -> query("SELECT * FROM erabiltzaile WHERE email='".$user."'"/* AND pasahitza='".$password."'"*/);
 	 
 		$numrows = mysqli_num_rows($erabiltzaileak);
 	 if($numrows!=0){
@@ -30,7 +30,7 @@ if(isset($_POST["login"])){
 		}
 	 
 
-	if($user == $user2 && $password == $pass2){
+	if($user == $user2 && hash_equals($pass2, crypt($password, $pass2))){
 	 
 	 
 	 $_SESSION['session_username']=$user;
@@ -54,7 +54,8 @@ if(isset($_POST["login"])){
 		}
 	 
 	 } else {
-	 
+	 		echo $pass2;
+
 	$message = "Wrong email or password";
 	 }
 	 
