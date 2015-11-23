@@ -80,6 +80,12 @@ session_start();
 				<li class ="ezkerra"><a href ="credits.html">Credits</a></li>
 				<li class ="ezkerra"><a href ="signUp.html">Sign Up </a></li>
 				<li class ="ezkerra"><a href ="quiz.php">Quizzes</a></li>
+				<?php
+					if($_SESSION['session_username']){
+						echo "<li class ='ezkerra'><a href ='reviewingQuizzes.php'>Review Questions</a></li>";
+						echo "<li class ='ezkerra'><a href ='erabiltzaileakIkusi.php'>View Users</a></li>";
+					}
+				?>
 			</ul>
 			<ul>
 				<li class ="eskuina"><a href ="logout.php">Log Out</a></li>
