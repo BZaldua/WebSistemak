@@ -90,6 +90,7 @@
 		<?php if (!empty($message)) {echo "<p style ='color:red'>". $message . "</p><br>";} ?>
 		<input type="submit" name="login" class="button" value="Login" />
 		<p>You don't have an account yet?  <a href="signUp.html" >Sign Up in here!</a></p>
+		<p><a href ="pasahitzBerria.html">I can't remenber the password</a></p>
 	</form>
 	</center>
 </body>
