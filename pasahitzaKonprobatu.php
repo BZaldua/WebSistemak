@@ -4,7 +4,7 @@ require_once('Soap/class.wsdlcache.php');
 
 $server= new soap_server;
 
-$ns="http://localhost/WebSistemak/";
+$ns="wslab1.esy.es/public_html";
 $server->configureWSDL('pasahitzaKonprobatu',$ns);
 $server->wsdl->schemaTargetNamespace=$ns;
 $server->register('pasahitzaKonprobatu',array('x'=>'xsd:string'),array('z'=>'xsd:string'),$ns);

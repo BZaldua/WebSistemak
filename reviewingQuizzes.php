@@ -34,7 +34,7 @@
 				<li class ="ezkerra"><a href ="quiz.php">Quizzes</a></li>
 			</ul>
 			<ul>
-				<li class ="eskuina"><a href ="logOut.php">Log Out</a></li>
+				<li class ="eskuina"><a href ="logout.php">Log Out</a></li>
 			</ul>
 		</div>
 		<hr>

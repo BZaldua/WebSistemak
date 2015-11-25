@@ -4,6 +4,8 @@ mysql_select_db("quiz") or die(mysql_error());
 
  //$link = mysql_connect("mysql.hostinger.es","u526113874_rb15","123456789");
 // mysql_select_db("u526113874_quiz") or die(mysql_error());
+
+
  
 
 $esp = $_POST['espezialitatea'];
@@ -13,15 +15,16 @@ if ($esp == 'other'){
 		$esp = "N/A";
 	}
 }
-$file= $_FILES['image']['tmp_name'];
 
-if(!isset($file))
-	echo "Argazkirik gabeko erabiltzailea";
-else
-	{
-		$image= addslashes(file_get_contents($_FILES['image']['tmp_name']));
+
+if($_FILES['image']['error']==0){
+	$file= $_FILES['image']['tmp_name'];
+	$image= addslashes(file_get_contents($_FILES['image']['tmp_name']));
 		$image_name= addslashes($_FILES['image']['name']);
-	}
+}else{
+	$image=null;
+	$image_name="";
+}
 	
 $korreoa = $_POST['emaila'];
 $izena = $_POST['izena'];
@@ -40,8 +43,10 @@ if (filter_var($korreoa, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"
 	}else if (filter_var($telefonoa, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/(6|9)[0-9]{8}/"))) === false){
 
 	} else {
+
 		$pasahitza= crypt($pasahitza,'st');
-	$sql = "INSERT INTO erabiltzaile (izena, abizena, pasahitza, email, telefonoa, espezialitatea, interesa,argazkia,argazkiMota) VALUES ('$_POST[izena]','$_POST[abizena]','$pasahitza','$korreoa','$_POST[telefonoa]','$esp','$_POST[interesa]','$image','$image_name')";
+		
+	$sql = "INSERT INTO erabiltzaile (izena, abizena, pasahitza, email, telefonoa, espezialitatea, interesa,argazkia,argazkiMota,galderaPasahitza,erantzunaPasahitza) VALUES ('$_POST[izena]','$_POST[abizena]','$pasahitza','$korreoa','$_POST[telefonoa]','$esp','$_POST[interesa]','$image','$image_name','$_POST[question]','$_POST[answer]')";
 echo " <html>
 	<head>
 		<meta name='tipo_contenido' content='text/html;' http-equiv='content-type' charset='utf-8'>
