@@ -111,3 +111,16 @@ function datuakIkusi(){
 	XMLHttpRequestObject.open("GET","datuakIkusi.php",true);
 	XMLHttpRequestObject.send();
 }
+
+function checkAnswer(id, erantzuna, zenbakia){
+	var galdera = id.innerHTML;
+	var erantzuna = erantzuna.value;
+	var xhr = new XMLHttpRequest();
+	xhr.open("GET", "erantzunaEgiaztatu.php?gald="+galdera+"&eran="+erantzuna);
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			document.getElementById('zuzOke'+zenbakia).innerHTML = xhr.responseText;
+		}
+	}
+	xhr.send();
+}

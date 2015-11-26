@@ -42,6 +42,7 @@
 		   type='text/css' 
 		   media='only screen and (max-width: 480px)'
 		   href='stylesPWS/smartphone.css' />
+		   <script src = 'funtzioak.js'></script>
 	</head>
 	<body>
 	<div class ="nav" id="nav">
@@ -69,16 +70,22 @@
 				echo "
 				<table id = 'galderakTaula'>
 					<tr>
-						<th id='gt1'>Questions</th>
-						<th id='gt2'>Difficulty</th>
+						<th>Questions</th>
+						<th>Difficulty</th>
+						<th>Your Answer </th>
 					</tr>";
 					
 				$erantzunak = $link ->query("Select galdera, zailtasuna from galdera");
+				$kop = 0;
 				while ($row = mysqli_fetch_assoc($erantzunak)){
+					$kop++;
 					echo "
 					<tr>
-						<td id='tdg'>".$row['galdera']."</td>
-						<td id='tdz'>".$row['zailtasuna']."</td>
+						<td class='tdg' id = 'galdera".$kop."'>".$row['galdera']."</td>
+						<td class='tdz'>".$row['zailtasuna']."</td>
+						<td><input type = 'text' id = 'erantzuna".$kop."'></td>
+						<td><input type = 'button' value = 'Check' onclick = 'checkAnswer(galdera".$kop.", erantzuna".$kop.", ".$kop.")'></td>
+						<td><div id = 'zuzOke".$kop."'></div></td>
 					</tr>";
 				}
 				echo "</table>";
