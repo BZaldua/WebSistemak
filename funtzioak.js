@@ -30,6 +30,16 @@ function balidatu(){
 		alert("Not the correct telephone format. The telephone must star with 6 or 9 and have 9 digits.");
 		return false;
 	}
+	if(document.getElementById('emailErantzun').innerHTML == "Ez zaude WS ikasgaian matrikulatuta" ){
+		alert("Matrikulaturik egon behar zara WS irakasgaian");
+		return false;
+	}if(document.getElementById('passErantzun').innerHTML == "Sartu duzun pasahitza arruntegia da"){
+		alert("Pasahitza ahulegia da");
+		return false;
+	}if(!konprobatu()){
+		alert("Pasahitzak ez dira berdinak");
+		return false;
+	}
 }
 
 function izenaBeteta(izen){
