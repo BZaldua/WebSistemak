@@ -19,10 +19,11 @@
 					var passErantzun = document.getElementById('passErantzun').value;
 					var emailErantzun = document.getElementById('emailErantzun').value;
 					if(passErantzun != 'Sartu duzun pasahitza arruntegia da' && emailErantzun != 'Ez zaude WS ikasgaian matrikulatuta'){
-						datuakGorde();
+						return true;
 					}
 				}else{
 					alert("Pasahitzak berdinak izan behar dira.");
+					return false;
 				}
 			}
 			function konprobatuEmaila(){
@@ -47,17 +48,6 @@
 						}
 					}
 					XMLHttpRequestObject.send();
-			}
-			
-			function datuakGorde(){
-				XMLHttpRequestObject = new XMLHttpRequest();
-				var e = document.getElementById('emaila').value; //Emaila lortu
-				var p = document.getElementById('pasahitza').value; //Emaila lortu
-				
-				var parametroak = "izena='unknown' && abizena='unknown' & pasahitza ="+p+"& emaila ="+e+"telefonoa=000000000 & espezialitatea = 'other' & argazkia = null & argazkiMota = null & besteaTextua = '' ";
-				XMLHttpRequestObject.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-				XMLHttpRequestObject.send(parametroak);
-				XMLHttpRequestObject.open("POST","soapBezEgiaztatuPasahitzaAJAX.php",true); 
 			}
 		</script>
 	</head>

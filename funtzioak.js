@@ -30,6 +30,11 @@ function balidatu(){
 		alert("Not the correct telephone format. The telephone must star with 6 or 9 and have 9 digits.");
 		return false;
 	}
+	if(!konprobatuPass() && !konprobatuEmaila()){
+		return false;
+	}if(!konprobatu()){
+		return false;
+	}
 }
 
 function izenaBeteta(izen){
@@ -124,3 +129,56 @@ function checkAnswer(id, erantzuna, zenbakia){
 	}
 	xhr.send();
 }
+
+
+			function konprobatu(){
+				if(document.getElementById('pasahitza1').value==document.getElementById('pasahitza').value){
+					konprobatuEmaila();
+					konprobatuPass();
+					var passErantzun = document.getElementById('passErantzun').value;
+					var emailErantzun = document.getElementById('emailErantzun').value;
+					if(passErantzun != 'Sartu duzun pasahitza arruntegia da' && emailErantzun != 'Ez zaude WS ikasgaian matrikulatuta'){
+						return true;
+					}
+				}else{
+					alert("Pasahitzak berdinak izan behar dira.");
+					return false;
+				}
+			}
+			function konprobatuEmaila(){
+				XMLHttpRequestObject1 = new XMLHttpRequest();
+				var e = document.getElementById('emaila').value; //Emaila lortu
+				XMLHttpRequestObject1.open("GET","soapBezEgiaztatuMatrikulaAJAX.php?emaila="+e,true); 
+				XMLHttpRequestObject1.onreadystatechange = function(){
+					if((XMLHttpRequestObject1.readyState == 4) && (XMLHttpRequestObject1.status == 200)){
+						document.getElementById('emailErantzun').innerHTML = XMLHttpRequestObject1.responseText;
+						if(XMLHttpRequestObject1.responseText == "Ez zaude WS ikasgaian matrikulatuta"){
+							document.getElementById('emailErantzun').style.backgroundColor ="red";
+							return false;
+						}else{
+							document.getElementById('emailErantzun').style.backgroundColor ="green";
+							return true;
+						}
+					}
+				}
+				XMLHttpRequestObject1.send();
+			}
+			
+			function konprobatuPass(){				
+					XMLHttpRequestObject = new XMLHttpRequest();
+					var e = document.getElementById('pasahitza').value; //Emaila lortu
+					XMLHttpRequestObject.open("GET","soapBezEgiaztatuPasahitzaAJAX.php?pasahitza="+e,true); 
+					XMLHttpRequestObject.onreadystatechange = function(){
+						if((XMLHttpRequestObject.readyState == 4) && (XMLHttpRequestObject.status == 200)){
+							document.getElementById('passErantzun').innerHTML = XMLHttpRequestObject.responseText;
+							if(XMLHttpRequestObject.responseText == "Sartu duzun pasahitza arruntegia da"){
+								document.getElementById('passErantzun').style.backgroundColor ="red";
+								return false;
+							}else{
+								document.getElementById('passErantzun').style.backgroundColor ="green";
+								return true;
+							}	
+						}
+					}
+					XMLHttpRequestObject.send();
+			}
