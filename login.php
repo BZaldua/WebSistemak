@@ -8,7 +8,7 @@
 			$link->connect_errno() . ") " . 
 			$link->connect_error()	);
 	}
-	 
+	 $ip=$_SERVER['REMOTE_ADDR'];
 	if(isset($_SESSION["session_username"])){
 		header("Location: handlingQuizzes.php");
 	}
@@ -20,7 +20,11 @@
 			$password=$_POST['password'];
 			
 			$erabiltzaileak =$link -> query("SELECT * FROM erabiltzaile WHERE email='".$user."'"/*AND pasahitza='".$password."'"*/);
-		 
+			$now=date('Y-m-d H:i:s');
+			
+			$nireSaiakerak=$link->query("SELECT * FROM saiakerak WHERE  data > date_add(NOW(), INTERVAL -50 MINUTE) and ip='$ip'");
+			$saiakerak=mysqli_num_rows($nireSaiakerak);
+			echo $saiakerak;
 			$numrows = mysqli_num_rows($erabiltzaileak);
 			if($numrows!=0){
 				while($row = mysqli_fetch_assoc($erabiltzaileak)){
@@ -30,7 +34,7 @@
 				if($user == $user2 && hash_equals($pass2, crypt($password, $pass2))){
 					$_SESSION['session_username']=$user;
 					$_SESSION['loginCount']++;
-					$ordua= Date('H:i:s');
+					$ordua= Date('Y-m-d H:i:s');
 					$konexioa=$link-> query("SELECT emaila FROM konexioak WHERE emaila=$user");
 					$konkop= mysqli_num_rows($konexioa);
 					if($konkop==0){
@@ -50,6 +54,11 @@
 					}
 				} else {
 				$message = "Wrong email or password";
+				$data=date('Y-m-d H:i:s');
+				
+				
+				if(!$link->query("insert into saiakerak(ip,data) values('$ip','$data')"))
+					$link->error;
 				}
 		 
 			} else {

@@ -14,12 +14,25 @@ session_start();
 		   type='text/css' 
 		   media='only screen and (max-width: 480px)'
 		   href='stylesPWS/smartphone.css' />
+		   <script type="text/javascript" language="javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script type="text/javascript" language="javascript">
+	$(document).ready(function(){
+    $("#ikusi").click(function(){
+        $("#galderakIkusi").load("datuakIkusi.php");
+    });});
+	$(document).ready(function(){
+    $("#bidali").click(function(){
+		var g = document.getElementById('galdera').value; //Galdera lortu
+			var e = document.getElementById('erantzuna').value; //Erantzuna lortu
+			var z = document.getElementById('zailtasuna').value; //Zailtasuna lortu
+			var t = document.getElementById('gaia').value; //Gaia lortu: t=topic
+			var parametroak = "galdera="+g+"&erantzuna="+e+"&zailtasuna="+z+"&gaia="+t;
+        $("#galderakIkusi").load("galderaGehitu.php",{galdera:g, erantzuna:e, zailtasuna:z, gaia:t} );
+    });});
 	
-	
-
+	XMLHttpRequestObject = new XMLHttpRequest();
+/*
 		function datuakIkusi(){
-			XMLHttpRequestObject = new XMLHttpRequest();
 			XMLHttpRequestObject.open("GET","datuakIkusi.php",true);
 			XMLHttpRequestObject.onreadystatechange = function(){
 			if((XMLHttpRequestObject.readyState == 4) && (XMLHttpRequestObject.status == 200)){
@@ -27,9 +40,10 @@ session_start();
 			}
 		}
 			XMLHttpRequestObject.send();
+			
 		}
+		
 		function galderaGehitu(){
-			XMLHttpRequestObject = new XMLHttpRequest();
 			var g = document.getElementById('galdera').value; //Galdera lortu
 			var e = document.getElementById('erantzuna').value; //Erantzuna lortu
 			var z = document.getElementById('zailtasuna').value; //Zailtasuna lortu
@@ -55,9 +69,9 @@ session_start();
 			zail.value= "1";
 			var gai = document.getElementById('gaia'); 
 			gai.value="";
-		}
+		}*/
 			function galderaKop(){
-			XMLHttpRequestObject = new XMLHttpRequest();	
+				
 			XMLHttpRequestObject.open('GET',"galderaKop.php",true);
 			XMLHttpRequestObject.onreadystatechange = function(){
 			if((XMLHttpRequestObject.readyState == 4) && (XMLHttpRequestObject.status == 200)){
@@ -71,7 +85,7 @@ session_start();
 	</script>
 </head>
 
-<body onLoad='galderaKop()'>
+<body onload="galderaKop()">
 
 
 	<div class ="nav" id="nav">
@@ -96,7 +110,7 @@ session_start();
 	<center>
 	<h1> Insert Question </h1>
 	
-	<form name ="addQuestion" id="addQuestion" action ="galderaGehitu.php">
+	<form name ="addQuestion" id="addQuestion">
 		<label>Question</label></br>
 		<textarea id ="galdera" name="galdera" rows="4" cols="50" required></textarea><br/><br/>
 		<label>Answer</label></br>
@@ -115,8 +129,9 @@ session_start();
 	<!-- Erabiltzailearen galdera kopurua  eta datu-baseak dituen galderen kopurua-->
 	</div>
 	</form>
-	<input type="button" onclick="return galderaGehitu()" name='bidali' id='bidali'value="Galdera gehitu"></input>
-	<input type='button' name='ikusi' id='ikusi' onClick='return datuakIkusi()' value='Ikusi Nire Galderak'></input>
+	<input type="button"  name='bidali' id='bidali'value="Galdera gehitu"></input>
+	<input type='button' name='ikusi' id='ikusi'  value='Ikusi Nire Galderak'></input>
+	
 	</center>
 	<div name='galderakIkusi' id='galderakIkusi'>
 	<!-- Datu basean erabiltzaile horrek egin dituen galderak ikusteko zatia -->
