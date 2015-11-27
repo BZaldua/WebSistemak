@@ -30,11 +30,6 @@ function balidatu(){
 		alert("Not the correct telephone format. The telephone must star with 6 or 9 and have 9 digits.");
 		return false;
 	}
-	if(!konprobatuPass() && !konprobatuEmaila()){
-		return false;
-	}if(!konprobatu()){
-		return false;
-	}
 }
 
 function izenaBeteta(izen){
@@ -132,16 +127,11 @@ function checkAnswer(id, erantzuna, zenbakia){
 
 
 			function konprobatu(){
-				if(document.getElementById('pasahitza1').value==document.getElementById('pasahitza').value){
-					konprobatuEmaila();
-					konprobatuPass();
-					var passErantzun = document.getElementById('passErantzun').value;
-					var emailErantzun = document.getElementById('emailErantzun').value;
-					if(passErantzun != 'Sartu duzun pasahitza arruntegia da' && emailErantzun != 'Ez zaude WS ikasgaian matrikulatuta'){
-						return true;
-					}
+				var pas1 = document.getElementById('pasahitza').value;
+				var pas2 = document.getElementById('pasahitza1').value;
+				if(pas1 == pas2){
+					return true;
 				}else{
-					alert("Pasahitzak berdinak izan behar dira.");
 					return false;
 				}
 			}
