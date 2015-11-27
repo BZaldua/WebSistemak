@@ -21,7 +21,6 @@ session_start();
 		$erantzuna = isset($_POST['erantzuna']) ? $_POST['erantzuna'] : '';
 		$zailtasuna = isset($_POST['zailtasuna']) ? $_POST['zailtasuna'] : '';
 		$gaia = isset($_POST['gaia']) ? $_POST['gaia'] : '';
-
 	if(($galdera != '') && ($erantzuna != '') && ($zailtasuna != '') && ($gaia != '')){
 		$sql = "INSERT INTO galdera (galdera, erantzuna, zailtasuna, emaila, gaia) VALUES ('$galdera','$erantzuna','$zailtasuna','$emaila', '$gaia')";
 		if (!$link -> query($sql)){
