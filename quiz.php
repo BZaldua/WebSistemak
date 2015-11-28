@@ -43,6 +43,13 @@
 		   media='only screen and (max-width: 480px)'
 		   href='stylesPWS/smartphone.css' />
 		   <script src = 'funtzioak.js'></script>
+		   <script type="text/javascript" language="javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+			<script>
+				$(document).ready(function(){
+				$("#nickbutton").click(function(){
+				$("#nicka").load("nickaErregistratu.php",{nick:document.getElementById('nick').value});
+				});});
+			</script>
 	</head>
 	<body>
 	<div class ="nav" id="nav">
@@ -62,6 +69,15 @@
 			</ul>
 		</div>
 		<hr/>
+		<br><div id='nicka' class='ezkerra'>
+				<?php if(!isset($_SESSION['nick'])){
+					echo"Session nickname:  <input type = 'text' name='nick' id ='nick'/>   <button name='nickbutton' id='nickbutton'>Register for this session</button>";
+					}else{
+					echo $_SESSION['nick']."<h2 style='color:green'>Asmatutako galderak: ".$_SESSION['asmatutakoak']."</h2> 
+					<h2 style='color:red'>Oker erantzundakoak: ".$_SESSION['okerrak']."</h2>";
+				} ?>
+			</div>
+				<br>
 		<center><h1> Quizzes</h1></center>
 		<?php 
 			$galderak = $link -> query ("Select galdera, zailtasuna from galdera");

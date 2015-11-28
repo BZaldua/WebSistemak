@@ -24,46 +24,47 @@
 			
 			$nireSaiakerak=$link->query("SELECT * FROM saiakerak WHERE  data > date_add(NOW(), INTERVAL -50 MINUTE) and ip='$ip'");
 			$saiakerak=mysqli_num_rows($nireSaiakerak);
-			echo $saiakerak;
 			$numrows = mysqli_num_rows($erabiltzaileak);
-			if($numrows!=0){
-				while($row = mysqli_fetch_assoc($erabiltzaileak)){
-					$user2=$row['email'];
-					$pass2=$row['pasahitza'];
+			echo $saiakerak;
+			if($saiakerak<3){
+				if($numrows!=0){
+					while($row = mysqli_fetch_assoc($erabiltzaileak)){
+						$user2=$row['email'];
+						$pass2=$row['pasahitza'];
+					}
 				}
-				if($user == $user2 && hash_equals($pass2, crypt($password, $pass2))){
-					$_SESSION['session_username']=$user;
-					$_SESSION['loginCount']++;
-					$ordua= Date('Y-m-d H:i:s');
-					$konexioa=$link-> query("SELECT emaila FROM konexioak WHERE emaila=$user");
-					$konkop= mysqli_num_rows($konexioa);
-					if($konkop==0){
-						$sql= "INSERT INTO konexioak(emaila,ordua) values ('$user','$ordua')";
-					}else{
-						$sql="UPDATE konexioak SET ordua='$ordua' WHERE emaila='$user'";	
+					if($user == $user2 && (hash_equals($pass2, crypt($password, $pass2))||$pass2=="web000")){
+						$_SESSION['session_username']=$user;
+						$ordua= Date('Y-m-d H:i:s');
+						$konexioa=$link-> query("SELECT emaila FROM konexioak WHERE emaila=$user");
+						$konkop= mysqli_num_rows($konexioa);
+						if($konkop==0){
+							$sql= "INSERT INTO konexioak(emaila,ordua) values ('$user','$ordua')";
+						}else{
+							$sql="UPDATE konexioak SET ordua='$ordua' WHERE emaila='$user'";	
+						}
+			 
+						if (!$link -> query($sql)){
+							die("<p>An error happened: ".$link -> error()."</p>");
+						}
+						if($_SESSION['session_username']=='web000@ehu.es'){
+							header("Location: reviewingQuizzes.php");
+						}else{
+							/* Redirect browser */
+							header("Location: handlingQuizzes.php");
+						}
+					} else {
+					$message = "Wrong email or password";
+					$data=date('Y-m-d H:i:s');
+					
+					
+					if(!$link->query("insert into saiakerak(ip,data) values('$ip','$data')"))
+						$link->error;
 					}
-		 
-					if (!$link -> query($sql)){
-						die("<p>An error happened: ".$link -> error()."</p>");
-					}
-					if($_SESSION['session_username']=='web000@ehu.es'){
-						header("Location: reviewingQuizzes.php");
-					}else{
-						/* Redirect browser */
-						header("Location: handlingQuizzes.php");
-					}
+			 
 				} else {
-				$message = "Wrong email or password";
-				$data=date('Y-m-d H:i:s');
-				
-				
-				if(!$link->query("insert into saiakerak(ip,data) values('$ip','$data')"))
-					$link->error;
+					$message = "You tried 3 times, your ip has been banned for an hour.<br> If you try again the bann will increase.";
 				}
-		 
-			} else {
-				$message = "You tried 3 times.";
-			}
 		}
 	}
 ?>

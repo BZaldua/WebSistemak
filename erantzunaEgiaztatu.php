@@ -16,9 +16,11 @@
 	$erantzunOna = mysqli_fetch_assoc($erantzunakDB);
 	$erantzunOna = strtoupper($erantzunOna['erantzuna']);
 	$galderaPosiblea = strtoupper($_GET['eran']);
-	if($erantzunOna == $galderaPosiblea){
+	if($erantzunOna == $galderaPosiblea){		
 		echo "<img src = 'http://goo.gl/uGZrcv' height = '20' width = '20'/>";
+		$_SESSION['asmatutakoak'];
 	}else{
+		$_SESSION['okerrak']++;
 		echo "<img src = 'http://goo.gl/tYmruA' height = '20' width = '20' />";
 	}
 ?>

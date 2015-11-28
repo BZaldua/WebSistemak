@@ -20,9 +20,11 @@ session_start();
     $("#ikusi").click(function(){
         $("#galderakIkusi").load("datuakIkusi.php");
     });});
+	
+	
 	$(document).ready(function(){
     $("#bidali").click(function(){
-		var g = document.getElementById('galdera').value; //Galdera lortu
+			var g = document.getElementById('galdera').value; //Galdera lortu
 			var e = document.getElementById('erantzuna').value; //Erantzuna lortu
 			var z = document.getElementById('zailtasuna').value; //Zailtasuna lortu
 			var t = document.getElementById('gaia').value; //Gaia lortu: t=topic
@@ -95,7 +97,7 @@ session_start();
 				<li class ="ezkerra"><a href ="signUp.html">Sign Up </a></li>
 				<li class ="ezkerra"><a href ="quiz.php">Quizzes</a></li>
 				<?php
-					if($_SESSION['session_username']){
+					if($_SESSION['session_username']=="web000@ehu.es"){
 						echo "<li class ='ezkerra'><a href ='reviewingQuizzes.php'>Review Questions</a></li>";
 						echo "<li class ='ezkerra'><a href ='erabiltzaileakIkusi.php'>View Users</a></li>";
 					}
