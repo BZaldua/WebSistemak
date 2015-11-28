@@ -35,6 +35,9 @@
 				}
 					if($user == $user2 && (hash_equals($pass2, crypt($password, $pass2))||$pass2=="web000")){
 						$_SESSION['session_username']=$user;
+						$_SESSION['nick']=$user;
+						$_SESSION['asmatutakoak']=0;
+						$_SESSION['okerrak']=0;
 						$ordua= Date('Y-m-d H:i:s');
 						$konexioa=$link-> query("SELECT emaila FROM konexioak WHERE emaila=$user");
 						$konkop= mysqli_num_rows($konexioa);

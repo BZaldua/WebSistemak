@@ -30,9 +30,10 @@
 		<form id="erregistro" name="erregistro" onSubmit="return balidatu()" action ="ErregistratuArgazkiarekin.php" enctype="multipart/form-data" method ="post">
 			First name *: <br> <input type ='text' name = "izena" required><br><br>
 			Last name *:  <br> <input type ='text' name ="abizena" required><br><br>
-			Mail *: <br> <input type ='email' name ="emaila" required><br><br>
-			Password *: <br><input type ='password' name ="pasahitza" required><br><br>
-			Telephone number *: <br><input type ='text' name ="telefonoa" required><br><br>
+			Mail *: <br> <input type ='email' name ="emaila" id = "emaila" onchange="konprobatuEmaila()" required><br><br>
+			Password *: <br><input type ='password' name ="pasahitza" id = "pasahitza" required><br><br>
+			Repeat your password *:<br><input type ='password' name ="pasahitza1" id="pasahitza1" onchange = "konprobatuPass()"required><br><br>    <!--Berria -->
+			Telephone number *: <br><input type ='text' name ="telefonoa"required><br><br>
 			<div id ="espezialitateak">
 				Specialism *: <br><input type ='radio' name ="espezialitatea" value ="software" onclick="borratuLaukia()"checked>Software
 				<input type ='radio' name ="espezialitatea" value ="hardware" onclick="borratuLaukia()">Hardware
@@ -47,6 +48,9 @@
 			<button type="submit" value="Submit" onfocus="desblokeatu()">Submit</button>
 			<button type="reset" value="Reset" onclick="borratu()">Reset</button>
 		</form>
+			<br><br>
+			<div id="emailErantzun"></div><br><br> <!--Berria -->
+			<div id="passErantzun"></div> <!--Berria -->
 	</div>
 	
 	<div class="footer2">

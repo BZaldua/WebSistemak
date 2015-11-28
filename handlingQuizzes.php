@@ -94,10 +94,11 @@ session_start();
 			<ul>
 				<li class ="ezkerra"><a href ="layout.html">Home</a></li>
 				<li class ="ezkerra"><a href ="credits.html">Credits</a></li>
-				<li class ="ezkerra"><a href ="signUp.html">Sign Up </a></li>
 				<li class ="ezkerra"><a href ="quiz.php">Quizzes</a></li>
 				<?php
+
 					if($_SESSION['session_username']=="web000@ehu.es"){
+
 						echo "<li class ='ezkerra'><a href ='reviewingQuizzes.php'>Review Questions</a></li>";
 						echo "<li class ='ezkerra'><a href ='erabiltzaileakIkusi.php'>View Users</a></li>";
 					}

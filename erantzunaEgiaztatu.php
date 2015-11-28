@@ -18,9 +18,19 @@
 	$galderaPosiblea = strtoupper($_GET['eran']);
 	if($erantzunOna == $galderaPosiblea){		
 		echo "<img src = 'http://goo.gl/uGZrcv' height = '20' width = '20'/>";
-		$_SESSION['asmatutakoak'];
+		if(isset($_SESSION['nick'])){
+			$_SESSION['asmatutakoak']++;
+			echo"@@";
+			echo$_SESSION['nick']."<h2 style='color:green'>Asmatutako galderak: ".$_SESSION['asmatutakoak']."</h2> 
+					<h2 style='color:red'>Oker erantzundakoak: ".$_SESSION['okerrak']."</h2>";
+		}
 	}else{
-		$_SESSION['okerrak']++;
 		echo "<img src = 'http://goo.gl/tYmruA' height = '20' width = '20' />";
+		if(isset($_SESSION['nick'])){
+			$_SESSION['okerrak']++;
+			echo"@@";
+			echo$_SESSION['nick']."<h2 style='color:green'>Asmatutako galderak: ".$_SESSION['asmatutakoak']."</h2> 
+					<h2 style='color:red'>Oker erantzundakoak: ".$_SESSION['okerrak']."</h2>";
+		}
 	}
 ?>

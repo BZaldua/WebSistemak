@@ -30,6 +30,16 @@ function balidatu(){
 		alert("Not the correct telephone format. The telephone must star with 6 or 9 and have 9 digits.");
 		return false;
 	}
+	if(document.getElementById('emailErantzun').innerHTML == "Ez zaude WS ikasgaian matrikulatuta" ){
+		alert("Matrikulaturik egon behar zara WS irakasgaian");
+		return false;
+	}if(document.getElementById('passErantzun').innerHTML == "Sartu duzun pasahitza arruntegia da"){
+		alert("Pasahitza ahulegia da");
+		return false;
+	}if(!konprobatu()){
+		alert("Pasahitzak ez dira berdinak");
+		return false;
+	}
 }
 
 function izenaBeteta(izen){
@@ -119,8 +129,57 @@ function checkAnswer(id, erantzuna, zenbakia){
 	xhr.open("GET", "erantzunaEgiaztatu.php?gald="+galdera+"&eran="+erantzuna);
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
-			document.getElementById('zuzOke'+zenbakia).innerHTML = xhr.responseText;
+			document.getElementById('zuzOke'+zenbakia).innerHTML = xhr.responseText.split("@@")[0];
+			document.getElementById('nicka').innerHTML=xhr.responseText.split("@@")[1];
 		}
 	}
 	xhr.send();
 }
+
+
+			function konprobatu(){
+				var pas1 = document.getElementById('pasahitza').value;
+				var pas2 = document.getElementById('pasahitza1').value;
+				if(pas1 == pas2){
+					return true;
+				}else{
+					return false;
+				}
+			}
+			function konprobatuEmaila(){
+				XMLHttpRequestObject1 = new XMLHttpRequest();
+				var e = document.getElementById('emaila').value; //Emaila lortu
+				XMLHttpRequestObject1.open("GET","soapBezEgiaztatuMatrikulaAJAX.php?emaila="+e,true); 
+				XMLHttpRequestObject1.onreadystatechange = function(){
+					if((XMLHttpRequestObject1.readyState == 4) && (XMLHttpRequestObject1.status == 200)){
+						document.getElementById('emailErantzun').innerHTML = XMLHttpRequestObject1.responseText;
+						if(XMLHttpRequestObject1.responseText == "Ez zaude WS ikasgaian matrikulatuta"){
+							document.getElementById('emailErantzun').style.backgroundColor ="red";
+							return false;
+						}else{
+							document.getElementById('emailErantzun').style.backgroundColor ="green";
+							return true;
+						}
+					}
+				}
+				XMLHttpRequestObject1.send();
+			}
+			
+			function konprobatuPass(){				
+					XMLHttpRequestObject = new XMLHttpRequest();
+					var e = document.getElementById('pasahitza').value; //Emaila lortu
+					XMLHttpRequestObject.open("GET","soapBezEgiaztatuPasahitzaAJAX.php?pasahitza="+e,true); 
+					XMLHttpRequestObject.onreadystatechange = function(){
+						if((XMLHttpRequestObject.readyState == 4) && (XMLHttpRequestObject.status == 200)){
+							document.getElementById('passErantzun').innerHTML = XMLHttpRequestObject.responseText;
+							if(XMLHttpRequestObject.responseText == "Sartu duzun pasahitza arruntegia da"){
+								document.getElementById('passErantzun').style.backgroundColor ="red";
+								return false;
+							}else{
+								document.getElementById('passErantzun').style.backgroundColor ="green";
+								return true;
+							}	
+						}
+					}
+					XMLHttpRequestObject.send();
+			}
