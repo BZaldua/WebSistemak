@@ -16,8 +16,10 @@
 	$erantzunOna = mysqli_fetch_assoc($erantzunakDB);
 	$erantzunOna = strtoupper($erantzunOna['erantzuna']);
 	$galderaPosiblea = strtoupper($_GET['eran']);
+	$zenb = $_GET['zenb'];
+	
 	if($erantzunOna == $galderaPosiblea){		
-		echo "<img src = 'http://goo.gl/uGZrcv' height = '20' width = '20'/>";
+		echo "<img src = 'http://goo.gl/uGZrcv' height = '20' width = '20' onload = 'blokeatuInputa($zenb)'/>";
 		if(isset($_SESSION['nick'])){
 			$_SESSION['asmatutakoak']++;
 			echo"@@";

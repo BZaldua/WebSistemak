@@ -126,7 +126,7 @@ function checkAnswer(id, erantzuna, zenbakia){
 	var galdera = id.innerHTML;
 	var erantzuna = erantzuna.value;
 	var xhr = new XMLHttpRequest();
-	xhr.open("GET", "erantzunaEgiaztatu.php?gald="+galdera+"&eran="+erantzuna);
+	xhr.open("GET", "erantzunaEgiaztatu.php?gald="+galdera+"&eran="+erantzuna+"&zenb="+zenbakia);
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			document.getElementById('zuzOke'+zenbakia).innerHTML = xhr.responseText.split("@@")[0];
@@ -183,3 +183,8 @@ function checkAnswer(id, erantzuna, zenbakia){
 					}
 					XMLHttpRequestObject.send();
 			}
+			
+function blokeatuInputa(zenb){
+	document.getElementById("erantzuna"+zenb).readOnly = true;
+	document.getElementById("botoi"+zenb).disabled = true;
+}
