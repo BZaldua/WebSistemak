@@ -35,11 +35,11 @@ session_start();
 				$correctResponse-> addChild('value',$erantzuna);	
 				$xml-> asXML('galderak.xml');
 				echo "<p style='background-color:green;color:white;text-align:center;font-weight:bold;'>One new entry added </p>";
-				echo "<center>";
-				echo "<a href='galderak.xml'>XML fitxategia</a><br>";
+				/*echo "<center>";
+			´	echo "<a href='galderak.xml'>XML fitxategia</a><br>";
 				echo "<a href ='seeXMLQuestions.php'>Ikusi galderak</a><br>";
 				echo "<a href ='transformazioaXSL.php'>Transformazioarekin ikusi</a>";
-				echo "</center>";
+				echo "</center>";*/
 		}
 		if(!$idKonexioa= $link-> query("SELECT id FROM konexioak WHERE emaila='$emaila'")){
 						die("<p>An error happened: ".$link -> error."</p>");

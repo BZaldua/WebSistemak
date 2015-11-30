@@ -19,6 +19,8 @@ session_start();
 	$(document).ready(function(){
     $("#ikusi").click(function(){
         $("#galderakIkusi").load("datuakIkusi.php");
+		 document.getElementById('galderakIkusi').style.visibility="visible";
+		
     });});
 	
 	
@@ -29,55 +31,20 @@ session_start();
 			var z = document.getElementById('zailtasuna').value; //Zailtasuna lortu
 			var t = document.getElementById('gaia').value; //Gaia lortu: t=topic
 			var parametroak = "galdera="+g+"&erantzuna="+e+"&zailtasuna="+z+"&gaia="+t;
-        $("#galderakIkusi").load("galderaGehitu.php",{galdera:g, erantzuna:e, zailtasuna:z, gaia:t} );
+        $("#galderaGehitu").load("galderaGehitu.php",{galdera:g, erantzuna:e, zailtasuna:z, gaia:t} );
     });});
 	
 	XMLHttpRequestObject = new XMLHttpRequest();
-/*
-		function datuakIkusi(){
-			XMLHttpRequestObject.open("GET","datuakIkusi.php",true);
-			XMLHttpRequestObject.onreadystatechange = function(){
-			if((XMLHttpRequestObject.readyState == 4) && (XMLHttpRequestObject.status == 200)){
-				document.getElementById('galderakIkusi').innerHTML = XMLHttpRequestObject.responseText;
-			}
-		}
-			XMLHttpRequestObject.send();
-			
-		}
-		
-		function galderaGehitu(){
-			var g = document.getElementById('galdera').value; //Galdera lortu
-			var e = document.getElementById('erantzuna').value; //Erantzuna lortu
-			var z = document.getElementById('zailtasuna').value; //Zailtasuna lortu
-			var t = document.getElementById('gaia').value; //Gaia lortu: t=topic
-			var parametroak = "galdera="+g+"&erantzuna="+e+"&zailtasuna="+z+"&gaia="+t;
-			XMLHttpRequestObject.open("POST","galderaGehitu.php",true); 
-			XMLHttpRequestObject.onreadystatechange = function(){
-			if((XMLHttpRequestObject.readyState == 4) && (XMLHttpRequestObject.status == 200)){
-				document.getElementById('galderakIkusi').innerHTML = XMLHttpRequestObject.responseText;
-			}
-		}
-			XMLHttpRequestObject.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			XMLHttpRequestObject.send(parametroak);
-			garbitu();
-		}
-		
-		function garbitu(){
-			var gald = document.getElementById('galdera');
-			gald.value = "";
-			var erantzuna = document.getElementById('erantzuna');
-			erantzuna.value="";
-			var zail = document.getElementById('zailtasuna'); 
-			zail.value= "1";
-			var gai = document.getElementById('gaia'); 
-			gai.value="";
-		}*/
+
 			function galderaKop(){
 				
 			XMLHttpRequestObject.open('GET',"galderaKop.php",true);
 			XMLHttpRequestObject.onreadystatechange = function(){
 			if((XMLHttpRequestObject.readyState == 4) && (XMLHttpRequestObject.status == 200)){
-				document.getElementById('galderaKop').innerHTML = XMLHttpRequestObject.responseText;
+				document.getElementById('galderaKop').innerHTML = XMLHttpRequestObject.responseText.split("@@")[0];
+				if (!$('#galderakIkusi').text==0){
+  				document.getElementById('galderakIkusi').innerHTML = XMLHttpRequestObject.responseText.split("@@")[1];
+             }
 			}
 		}
 			XMLHttpRequestObject.send();			
@@ -136,7 +103,10 @@ session_start();
 	<input type='button' name='ikusi' id='ikusi'  value='Ikusi Nire Galderak'></input>
 	
 	</center>
-	<div name='galderakIkusi' id='galderakIkusi'>
+	<div name='galderaGehitu' id='galderaGehitu'>
+	<!-- Datu basean erabiltzaile horrek egin dituen galderak ikusteko zatia -->
+	</div>
+	<div name='galderakIkusi' id='galderakIkusi' style='visibility:hidden'>
 	<!-- Datu basean erabiltzaile horrek egin dituen galderak ikusteko zatia -->
 	</div>
 </body>
