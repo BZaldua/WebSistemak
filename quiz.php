@@ -100,7 +100,7 @@
 						<td class='tdg' id = 'galdera".$kop."'>".$row['galdera']."</td>
 						<td class='tdz'>".$row['zailtasuna']."</td>
 						<td><input type = 'text' id = 'erantzuna".$kop."'></td>
-						<td><input type = 'button' value = 'Check' onclick = 'checkAnswer(galdera".$kop.", erantzuna".$kop.", ".$kop.")'></td>
+						<td><input id = 'botoi".$kop."' type = 'button' value = 'Check' onclick = 'checkAnswer(galdera".$kop.", erantzuna".$kop.", ".$kop.")'></td>
 						<td><div id = 'zuzOke".$kop."'></div></td>
 					</tr>";
 				}

@@ -23,11 +23,7 @@ function pasahitzaKonprobatu($x){
 			echo"Errorea: fgets() errorea eman du\n";			
 		}else{
 			return"BALIOZKOA";
-		}/*echo count($file).'<br>';
-		foreach($file as $name)
-		{
-			echo $name.'<br>';
-		}*/
+		}
 			$fclose($file);
 	}else{
 		echo"Ezin izan da fitxategia iriki";

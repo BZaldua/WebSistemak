@@ -42,9 +42,8 @@ session_start();
 			XMLHttpRequestObject.onreadystatechange = function(){
 			if((XMLHttpRequestObject.readyState == 4) && (XMLHttpRequestObject.status == 200)){
 				document.getElementById('galderaKop').innerHTML = XMLHttpRequestObject.responseText.split("@@")[0];
-				if (!$('#galderakIkusi').text==0){
   				document.getElementById('galderakIkusi').innerHTML = XMLHttpRequestObject.responseText.split("@@")[1];
-             }
+             
 			}
 		}
 			XMLHttpRequestObject.send();			

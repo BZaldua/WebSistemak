@@ -1,12 +1,6 @@
 <?php
-$link = mysql_connect("localhost","root","") or die(mysql_error());
-mysql_select_db("quiz") or die(mysql_error());
-
- //$link = mysql_connect("mysql.hostinger.es","u526113874_rb15","123456789");
-// mysql_select_db("u526113874_quiz") or die(mysql_error());
-
-
- 
+$link = new mysqli("localhost","root","","quiz");
+//$link = new mysqli("mysql.hostinger.es","u526113874_rb15","123456789","u526113874_quiz");	
 
 $esp = $_POST['espezialitatea'];
 if ($esp == 'other'){
@@ -69,9 +63,9 @@ echo " <html>
 		</div>
 		<hr>
 		<div class ='aim' id ='head'>";
-if (!mysql_query($sql))
+if (!$link -> query($sql))
 {
-	die("<p>An error happened: ".mysql_error()."</p>");
+	die("<p>An error happened: ".$link -> error."</p>");
 }
 //html estiloa jarri:
 
@@ -81,5 +75,4 @@ if (!mysql_query($sql))
 		</div>
 		</body></html>";
 	}
-mysql_close();
 ?>
