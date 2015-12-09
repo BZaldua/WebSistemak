@@ -21,14 +21,15 @@
 			$password=$_POST['password'];
 			
 			$erabiltzaileak =$link -> query("SELECT * FROM erabiltzaile WHERE email='".$user."'"/*AND pasahitza='".$password."'"*/);
-			$now=date('Y-m-d H:i:s');
+			$now=date('Y-m-d');
 			
-			$nireSaiakerak=$link->query("SELECT * FROM saiakerak WHERE  data > date_add(NOW(), INTERVAL -50 MINUTE) and ip='$ip'");
+                        if(!$link->query("insert into saiakera(ip,data) values('$ip','$now')"))
+			       $link->error;
+			$nireSaiakerak=$link->query("SELECT * FROM saiakera WHERE  data ='$now' and ip='$ip'");
 			$saiakerak=mysqli_num_rows($nireSaiakerak);
-			$numrows = mysqli_num_rows($erabiltzaileak);
-			echo $saiakerak;
+
 			if($saiakerak<3){
-				if($numrows!=0){
+				if($erabiltzaileak){
 					while($row = mysqli_fetch_assoc($erabiltzaileak)){
 						$user2=$row['email'];
 						$pass2=$row['pasahitza'];
@@ -59,15 +60,11 @@
 						}
 					} else {
 					$message = "Wrong email or password";
-					$data=date('Y-m-d H:i:s');
 					
-					
-					if(!$link->query("insert into saiakerak(ip,data) values('$ip','$data')"))
-						$link->error;
 					}
 			 
 				} else {
-					$message = "You tried 3 times, your ip has been banned for an hour.<br> If you try again the bann will increase.";
+					$message = "You tried 3 times, your ip has been banned until tomorrow.";
 				}
 		}
 	}
@@ -126,4 +123,4 @@ function hash_equals($str1, $str2)
 	</form>
 	</center>
 </body>
-</html>
+</html>		
